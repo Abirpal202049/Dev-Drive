@@ -1,33 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Route</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <form action="" method="post"></form>
-    <div class="container">
+<title>Register New User</title>
+<link rel="stylesheet" href="/style.css">
+
+<form action="" method="post"></form>
+<div class="container">
         
-        <form class="login-form" action="/register" method="POST">
-            <h2 class="heading">Sign Up</h2>
-            <input type="text" class="input" name="username" placeholder="Username" value="<%= locals.username %>" >
-            <input type="text" class="input" name="email" placeholder="Email" value="<%= locals.email %>" >
-            <input type="password" class="input" name="password" value="<%= locals.password %>" placeholder="Password" >
-            <input type="password" class="input" name="confirmPassword" placeholder="Confirm Password" >
-            <button type="submit" class="btn">Sign Up</button>
-            <div class="row"> 
-            <label class="checkbox"><input type="checkbox"> Remember me</label>
-            <a href="/login" class="forgot-pass">Forgot Password?</a>
-            <br>
-            <br>
-            <p class="signUp"><a href="/login">Already have an Account</a></p>
-            </div>
+    <form class="login-form" action="/register" method="POST">
+        <h2 class="heading">Sign Up</h2>
+        <input type="text" class="input" name="username" placeholder="Username" value="<%= locals.username %>" >
+        <input type="text" class="input" name="email" placeholder="Email" value="<%= locals.email %>" >
+        <input type="password" class="input" name="password" value="<%= locals.password %>" placeholder="Password" >
+        <input type="password" class="input" name="confirmPassword" placeholder="Confirm Password" >
+        <button type="submit" class="btn">Sign Up</button>
+        <div class="row"> 
+        <label class="checkbox"><input type="checkbox"> Remember me</label>
+        <a href="/login" class="forgot-pass">Forgot Password?</a>
+        <br>
+        <br>
+        <p class="signUp"><a href="/login">Already have an Account</a></p>
+        </div>
             
-        </form>
-        <p class="signUp"><a href="/">Explore </a></p>
-    </div>
-</body>
-</html>
+    </form>
+    <p class="signUp"><a href="/">Explore </a></p>
+</div>

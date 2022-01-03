@@ -1,0 +1,17 @@
+<title>Articles</title>
+
+<%- include('./components/header2.ejs') %> 
+
+<div class="container">
+    <form action="/createArticle" method="POST">
+        <div class="mb-3 mx-5 my-5">
+            <label for="exampleFormControlInput1" class="form-label">Enter the title of the Articles</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="Enter the title">
+        </div>
+        <div class="mb-3 mx-5 my-2">
+            <label for="exampleFormControlTextarea1" class="form-label">Enter the description of the articles</label>
+            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark mx-5">Save The Article</button>
+    </form>
+</div>

@@ -1,11 +1,15 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/user')
+const Articles = require('../models/artical')
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = process.env
 
-exports.homePage = (req, res) => {
+exports.homePage = async (req, res) => {
     console.log(req.cookies);
-    res.render('index')
+    const articles = await Articles.find({})
+    console.log(articles);
+    res.render('index', {articles : articles})
+    // res.send("Hi")
 }
 
 
