@@ -7,8 +7,8 @@ const { SECRET_KEY } = process.env
 exports.homePage = async (req, res) => {
     console.log(req.cookies);
     const articles = await Articles.find({})
-    console.log(articles);
-    res.render('index', {articles : articles})
+    const user = await User.find({})
+    res.render('index', {articles : articles, user : user})
     // res.send("Hi")
 }
 
@@ -58,12 +58,25 @@ exports.postRegister = async (req, res) => {
             password : securePassword
         })
 
+        const token = jwt.sign(
+            { id : user._id, email},
+            SECRET_KEY,
+            { 
+                expiresIn : "2h"
+            }
+        )
+        const options = {
+            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+            httpOnly: true,
+        };
+
 
         console.log(user);
         user.password = undefined;
-        return res.redirect("/")
+        return res.status(200).cookie("Token", token, options).redirect("/loginuser")
     }
     catch (error) {
+        console.log(error);
         return res.status(400).json({error})
     }
 }

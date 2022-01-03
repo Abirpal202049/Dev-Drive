@@ -10,7 +10,6 @@ exports.dashboard = async (req, res) => {
     const userId = user._id;
     const articles = await Article.find({user : userId})
     console.log(articles);
-    // console.log(loggeduser);
     res.render('Secure-authProfile', {user : user.username, article : articles})
 }
 
@@ -25,7 +24,11 @@ exports.article = async (req, res) => {
 exports.createArticles = async (req, res) => {
     try {
         const {title, description} = req.body
-        // console.log(req.body);
+        if(!(title || description)){
+            return res.status(400).json({
+                message : "Field Missing"
+            })
+        }
         const userEmail = req.forwaddingDataFromMiddlewareToRoutes.email
         // console.log(userEmail);
         const user = await User.findOne({email : userEmail})
