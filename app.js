@@ -1,5 +1,7 @@
 const app = require('./index')
 
-app.listen(4000, ()=>{
-    console.log(`Server running at port 4000`);
+PORT = process.env.PORT || 4000
+
+app.listen(PORT, ()=>{
+    console.log(`Server running at port ${PORT}`);
 })
