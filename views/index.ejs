@@ -1,15 +1,7 @@
 <title>Home Page - Mini Auth</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<% if(flag == "One") {%> 
-  <%- include('./components/header1.ejs') %> 
-<% } %> 
-
-<% if(flag == "Two") {%> 
-  <%- include('./components/header2.ejs') %> 
-<% } %> 
-
-
+<%- include('./components/headerDecision.ejs') %>
 
 
 <div class="col-md-6 mx-5 my-5">
@@ -23,20 +15,8 @@
 <div class="container col-md-6 ">
     <h2>Here are some of the recent articles</h2>
     <hr>
-  <% articles.reverse().forEach(element => { %>
-    <% users.forEach(value => { %>
-      <% if (String(element.user) === String(value._id)) {%>
-        <div class="h-100 p-5 bg-dark text-light border rounded-3 mx-3 my-4">
-          <strong class="d-inline-block mb-2 text-danger"><a href="/profile/<%= value._id %> " class="text-danger"><%= value.username %></a></strong>
-        <div class="mb-1 text-muted"><%= element.createdAt %></div>
-        <h2><%= element.title %> </h2>
-        <p><%= element.description %></p>
-      </div>
-      <% } %> 
- 
-    <% }); %>  
-  <% }); %>  
-  </div>
+    <%- include('./components/allArticles.ejs') %> 
+</div>
 
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

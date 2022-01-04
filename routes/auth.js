@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require('../middleware/auth')
 
 const {homePage, getRegister, postRegister, getLogin, postLogin, signOut} = require('../controllers/auth')
-const {dashboard, article, createArticles} = require('../controllers/secure-auth')
+const {dashboard, article, createArticles, allArticle} = require('../controllers/secure-auth')
 
 
 // ! General Routes
@@ -13,6 +13,7 @@ router.post('/register', postRegister)
 router.get('/login', getLogin)
 router.post('/login', postLogin)
 router.get("/signout", signOut)
+router.get('/allarticles', allArticle)
 
 
 // ! Secure Routes
