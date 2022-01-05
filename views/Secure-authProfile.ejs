@@ -11,7 +11,7 @@
     <% article.reverse().forEach(element => { %>
         <div class="h-100 p-5 bg-dark text-light border rounded-3 mx-3 my-4">
             <strong class="d-inline-block mb-2 text-warning"><%= user %></strong>
-            <div class="mb-1 text-muted"><%= element.createdAt %></div>
+            <div class="mb-1 text-muted"><%= element.updatedAt %></div>
             <h2><%= element.title %> </h2>
             <p><%= element.description %></p>
             <div class="d-flex justify-content-between">

@@ -19,7 +19,16 @@ exports.dashboard = async (req, res) => {
 exports.article = async (req, res) => {
     const userEmail = req.forwaddingDataFromMiddlewareToRoutes.email
     const loggeduser = await User.findOne({email :userEmail})
-    res.render('Secure-articles', {user : loggeduser.username})
+    const article = {
+        title : null,
+        description : null
+    }
+    res.render('Secure-articles', {
+        user : loggeduser.username, 
+        RouteLocation : "createArticle", 
+        articleData : article,
+        work : "Save"
+    })
 }
 
 
@@ -27,7 +36,7 @@ exports.article = async (req, res) => {
 exports.createArticles = async (req, res) => {
     try {
         const {title, description} = req.body
-        if(!(title || description)){
+        if((title == null || description == null)){
             return res.status(400).json({
                 message : "Field Missing"
             })
@@ -54,7 +63,7 @@ exports.createArticles = async (req, res) => {
 
 exports.allArticle = async (req, res) => {
     try {
-        const articles = await Article.find({})
+        const articles = await Article.find({}).sort({updatedAt : 1})
         const users = await User.find({})
 
         res.render('Secure-allArticle', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile})

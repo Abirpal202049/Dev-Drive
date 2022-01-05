@@ -3,7 +3,7 @@
       <% if (String(element.user) === String(value._id)) {%>
         <div class="h-100 p-5 bg-dark text-light border rounded-3 mx-3 my-4">
           <strong class="d-inline-block mb-2 text-danger"><a href="/profile/<%= value._id %> " class="text-danger"><%= value.username %></a></strong>
-        <div class="mb-1 text-muted"><%= element.createdAt %></div>
+        <div class="mb-1 text-muted"><%= element.updatedAt %></div>
         <h2><%= element.title %> </h2>
         <p><%= element.description %></p>
       </div>

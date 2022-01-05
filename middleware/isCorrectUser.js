@@ -18,6 +18,9 @@ const isCorrectUser = async (req, res, next) => {
                 message : "Access Denied"
             })
         }
+
+        const Username = {username : user.username}
+        req.username = Username
         
     } catch (error) {
         return res.status(400).json({

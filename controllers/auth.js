@@ -7,7 +7,7 @@ const { SECRET_KEY } = process.env
 exports.homePage = async (req, res) => {
     try {
         console.log(req.decision);
-        const articles = await Articles.find({})
+        const articles = await Articles.find({}).sort({updatedAt : 1})
         const users = await User.find({})
 
         res.render('index', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile})
