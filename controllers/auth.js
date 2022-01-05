@@ -6,29 +6,14 @@ const { SECRET_KEY } = process.env
 
 exports.homePage = async (req, res) => {
     try {
-        let flag;
-        let userProfile = "";
-        console.log(req.cookies.Token);
-        if(!(req.cookies.Token)){
-            // If no token Render navbar 1
-            flag = "One"
-            
-        }else{
-            // If Token is present render navbar 2-(Profile type)
-            flag = "Two"
-            const decode = jwt.verify(req.cookies.Token, SECRET_KEY);
-            console.log(decode.email);
-            userProfile = await User.findOne({email : decode.email})
-            userProfile =userProfile.username
-        }
-        console.log(flag);
-
+        console.log(req.decision);
         const articles = await Articles.find({})
         const users = await User.find({})
-        res.render('index', {articles : articles, users : users, flag : flag, user : userProfile})
-        // res.send("Hi")
+
+        res.render('index', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile})
+
     } catch (error) {
-        return res.status(400).json({error})
+        return res.status(400).clearCookie("Token").json({error})
     }
     
 }

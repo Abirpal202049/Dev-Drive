@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router(); 
 const auth = require('../middleware/auth')
 const isUser = require('../middleware/isCorrectUser')
+const isTokenPresent = require('../middleware/isTokenPresent')
 
 const {homePage, getRegister, postRegister, getLogin, postLogin, signOut} = require('../controllers/auth')
 const {dashboard, article, createArticles, allArticle} = require('../controllers/secure-auth')
@@ -9,13 +10,13 @@ const {deleteArticles} = require('../controllers/update-delete')
 
 
 // ! General Routes
-router.get('/', homePage)
+router.get('/', isTokenPresent, homePage)
+router.get('/allarticles', isTokenPresent, allArticle)
 router.get('/register', getRegister)
 router.post('/register', postRegister)
 router.get('/login', getLogin)
 router.post('/login', postLogin)
 router.get("/signout", signOut)
-router.get('/allarticles', allArticle)
 
 
 // ! Secure Routes

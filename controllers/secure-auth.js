@@ -54,26 +54,10 @@ exports.createArticles = async (req, res) => {
 
 exports.allArticle = async (req, res) => {
     try {
-        let flag;
-        let userProfile = "";
-        console.log(req.cookies.Token);
-        if(!(req.cookies.Token)){
-            // If no token Render navbar 1
-            flag = "One"
-            
-        }else{
-            // If Token is present render navbar 2-(Profile type)
-            flag = "Two"
-            const decode = jwt.verify(req.cookies.Token, SECRET_KEY);
-            console.log(decode.email);
-            userProfile = await User.findOne({email : decode.email})
-            userProfile =userProfile.username
-        }
-        console.log(flag);
-
         const articles = await Article.find({})
         const users = await User.find({})
-        res.render('Secure-allArticle', {articles : articles, users : users, flag : flag, user : userProfile})
+
+        res.render('Secure-allArticle', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile})
     } catch (error) {
         return res.status(400).json({error : error.message});
     }
