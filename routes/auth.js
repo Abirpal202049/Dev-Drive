@@ -5,7 +5,7 @@ const isUser = require('../middleware/isCorrectUser')
 const isTokenPresent = require('../middleware/isTokenPresent')
 
 const {homePage, getRegister, postRegister, getLogin, postLogin, signOut} = require('../controllers/auth')
-const {dashboard, article, createArticles, allArticle} = require('../controllers/secure-auth')
+const {dashboard, article, createArticles, allArticle, profile} = require('../controllers/secure-auth')
 const {deleteArticles, updateArticle, updateArticlePost} = require('../controllers/update-delete')
 
 
@@ -24,6 +24,7 @@ router.get("/signout", signOut)
 // ! Secure Routes
 router.get("/loginuser", auth, dashboard)
 router.get('/articles', auth, article)
+router.get('/profile/:id', auth, profile)
 router.post('/createArticle', auth , createArticles)
 
 

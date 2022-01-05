@@ -72,3 +72,16 @@ exports.allArticle = async (req, res) => {
     }
     
 }
+
+
+exports.profile = async (req, res) => {
+    try {
+        const userEmail = req.forwaddingDataFromMiddlewareToRoutes.email
+        const user = await User.findOne({email : userEmail})
+        const selecteduser = await User.findOne({_id : req.params.id})
+        console.log(selecteduser);
+        res.render('Profile', { user : user.username, SelectedUser : selecteduser})
+    } catch (error) {
+        return res.status(400).json({error : error.message});
+    }
+}
