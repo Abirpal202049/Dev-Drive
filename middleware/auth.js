@@ -17,7 +17,9 @@ const auth = (req, res, next) => {
         req.forwaddingDataFromMiddlewareToRoutes = decode;
 
     } catch (error) {
-        return res.status(400).json({error})
+        console.log(error.message);
+        res.clearCookie("Token")
+        return res.redirect('/')
     }
     next();
 }

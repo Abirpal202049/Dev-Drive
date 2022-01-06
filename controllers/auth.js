@@ -72,7 +72,7 @@ exports.postRegister = async (req, res) => {
             }
         )
         const options = {
-            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             httpOnly: true,
         };
 
@@ -83,7 +83,8 @@ exports.postRegister = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(400).json({error})
+        res.clearCookie("Token")
+        return res.status(400).json({Error})
     }
 }
 

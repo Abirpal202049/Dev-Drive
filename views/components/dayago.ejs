@@ -1,0 +1,17 @@
+<%
+daysago = function(time){
+    const k = Date.now() - new Date(time);
+
+    if(k < 60*1000)
+        return Math.floor(k/1000) + " sec ago"
+    else if(k < 60*60*1000)
+        return Math.floor((k/1000)/60) + " min ago"
+    else if(k < 24*60*60*1000)
+        return Math.floor((k/1000)/60/60) + " hours ago"
+    else if(k < 30*24*60*60*1000)
+        return Math.floor((k/1000)/60/60/24) + " day ago"
+    else if(k < 12*30*24*60*60*1000)
+        return Math.floor((k/1000)/60/60/24/30) + " month ago"
+
+}
+%>

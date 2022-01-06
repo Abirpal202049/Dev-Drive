@@ -10,7 +10,7 @@ exports.dashboard = async (req, res) => {
     console.log(userEmail);
     const user = await User.findOne({email : userEmail})
     const userId = user._id;
-    const articles = await Article.find({user : userId})
+    const articles = await Article.find({user : userId}).sort({updatedAt : 1})
     console.log(articles);
     res.render('Secure-authProfile', {user : user.username, article : articles, userId : userId})
 }
@@ -81,7 +81,8 @@ exports.profile = async (req, res) => {
         const user = await User.findOne({email : userEmail})
         const selecteduser = await User.findOne({_id : req.params.id})
         console.log(selecteduser);
-        res.render('Profile', { user : user.username, SelectedUser : selecteduser, userId : user._id})
+        const articles = await Article.find({user : selecteduser._id}).sort({updatedAt : 1})
+        res.render('Profile', { user : user.username, SelectedUser : selecteduser, userId : user._id, article : articles})
     } catch (error) {
         return res.status(400).json({error : error.message});
     }

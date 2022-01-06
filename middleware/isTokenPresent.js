@@ -31,8 +31,9 @@ const isTokenPresent = async (req, res, next) => {
         req.decision = valuePassOn;
 
     } catch (error) {
+        res.clearCookie("Token")
         return res.status(400).json({
-            error : error.message
+            ERROR_MESSAGE : error.message
         })
     }
     next();
