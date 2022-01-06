@@ -12,7 +12,7 @@ exports.dashboard = async (req, res) => {
     const userId = user._id;
     const articles = await Article.find({user : userId})
     console.log(articles);
-    res.render('Secure-authProfile', {user : user.username, article : articles})
+    res.render('Secure-authProfile', {user : user.username, article : articles, userId : userId})
 }
 
 
@@ -24,7 +24,8 @@ exports.article = async (req, res) => {
         description : null
     }
     res.render('Secure-articles', {
-        user : loggeduser.username, 
+        user : loggeduser.username,
+        userId :  loggeduser._id,
         RouteLocation : "createArticle", 
         articleData : article,
         work : "Save"
@@ -66,7 +67,7 @@ exports.allArticle = async (req, res) => {
         const articles = await Article.find({}).sort({updatedAt : 1})
         const users = await User.find({})
 
-        res.render('Secure-allArticle', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile})
+        res.render('Secure-allArticle', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile, userId : req.decision.userId})
     } catch (error) {
         return res.status(400).json({error : error.message});
     }
@@ -80,7 +81,7 @@ exports.profile = async (req, res) => {
         const user = await User.findOne({email : userEmail})
         const selecteduser = await User.findOne({_id : req.params.id})
         console.log(selecteduser);
-        res.render('Profile', { user : user.username, SelectedUser : selecteduser})
+        res.render('Profile', { user : user.username, SelectedUser : selecteduser, userId : user._id})
     } catch (error) {
         return res.status(400).json({error : error.message});
     }

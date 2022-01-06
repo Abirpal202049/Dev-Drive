@@ -8,6 +8,7 @@ const isTokenPresent = async (req, res, next) => {
     try {
         let flag;
         let userProfile = "";
+        let userProfileId = "";
         console.log(req.cookies.Token);
         if(!(req.cookies.Token)){
             // If no token Render navbar 1
@@ -18,12 +19,14 @@ const isTokenPresent = async (req, res, next) => {
             flag = "Two"
             const decode = jwt.verify(req.cookies.Token, SECRET_KEY);
             console.log(decode.email);
-            userProfile = await User.findOne({email : decode.email})
-            userProfile =userProfile.username
+            const userProfiles = await User.findOne({email : decode.email})
+            userProfile = userProfiles.username;
+            userProfileId = userProfiles._id;
         }
         const valuePassOn = {
             flag : flag,
-            userProfile : userProfile
+            userProfile : userProfile,
+            userId : userProfileId
         }
         req.decision = valuePassOn;
 

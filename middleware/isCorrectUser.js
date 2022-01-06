@@ -19,7 +19,7 @@ const isCorrectUser = async (req, res, next) => {
             })
         }
 
-        const Username = {username : user.username}
+        const Username = {username : user.username, userId : user._id}
         req.username = Username
         
     } catch (error) {

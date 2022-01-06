@@ -24,6 +24,7 @@ exports.updateArticle = async (req, res) => {
         
         return res.render('Secure-articles', {
             user : user, 
+            userId : req.username.userId,
             articleData : article, 
             RouteLocation : finalRoute,
             work : "Update"

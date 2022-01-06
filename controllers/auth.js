@@ -10,7 +10,7 @@ exports.homePage = async (req, res) => {
         const articles = await Articles.find({}).sort({updatedAt : 1})
         const users = await User.find({})
 
-        res.render('index', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile})
+        res.render('index', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile, userId : req.decision.userId})
 
     } catch (error) {
         return res.status(400).clearCookie("Token").json({error})
