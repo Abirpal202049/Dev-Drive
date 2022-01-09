@@ -64,7 +64,7 @@ exports.createArticles = async (req, res) => {
 
 exports.allArticle = async (req, res) => {
     try {
-        const articles = await Article.find({}).sort({updatedAt : 1})
+        const articles = await Article.find({}).sort({createdAt : 1})
         const users = await User.find({})
 
         res.render('Secure-allArticle', {articles : articles, users : users, flag : req.decision.flag, user : req.decision.userProfile, userId : req.decision.userId})

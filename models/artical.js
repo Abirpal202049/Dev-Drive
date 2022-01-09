@@ -12,6 +12,14 @@ const articalSchema = new mongoose.Schema({
     },
     description : {
         type : String,
+    },
+    like : {
+        type : Array,
+        default : []
+    },
+    likecount : {
+        type :  Number,
+        default : 0
     }
 },{timestamps : true,})
 

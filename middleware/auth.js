@@ -3,7 +3,7 @@ const { SECRET_KEY } = process.env
 
 const auth = (req, res, next) => {
     try {
-        console.log(req.cookies);
+        // console.log(req.cookies);
         const token = req.cookies.Token;
 
         if(!token){

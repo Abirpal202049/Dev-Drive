@@ -5,12 +5,12 @@
         <div class="h-100 p-5 bg-dark text-light border rounded-3 mx-3 my-4">
           <strong class="d-inline-block mb-2 text-danger"><a href="/profile/<%= value._id %> " class="text-danger"><%= value.username %></a></strong>
           <%- include('./dayago.ejs') %> 
-        <div class="mb-1 text-muted"><%= daysago(element.updatedAt) %></div>
+        <div class="mb-1 text-muted"><%= daysago(element.createdAt) %></div>
         <h2><%= element.title %> </h2>
         <p><%= element.description %></p>
         <div class="d-flex justify-content-between container my-2">
           <div>
-              <a href="#"><i class="bi bi-heart" style="font-size: 1.5rem; color: rgb(255, 88, 88);"></i></a>
+              <a href="/like/<%= element._id %>/<%= userId %>  " style="text-decoration : none;"><i class="bi bi-heart like" style="font-size: 1.5rem; color: rgb(255, 88, 88);"><%= element.like.length %></i></a>
           </div>
           <div>
             <a href="#"><i class="bi bi-chat-dots" style="font-size: 1.5rem; color: rgb(104, 62, 255);"></i></a>
@@ -21,7 +21,25 @@
           
         </div>
       </div>
+      
       <% } %> 
  
     <% }); %>  
   <% }); %> 
+
+  <script>
+    const like = document.querySelector(".like")
+  
+    like.addEventListener('click', ()=>{
+      // if (like.classList.contains("bi-heart")){
+      //   like.classList.remove("bi-heart")
+      //   like.classList.add("bi-heart-fill")
+      // }
+      // else{
+      //   like.classList.add("bi-heart")
+      //   like.classList.remove("bi-heart-fill")
+      // }
+      like.classList.add("bi-heart-fill")
+    })
+    
+  </script>
